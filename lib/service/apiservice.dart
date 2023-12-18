@@ -5,10 +5,10 @@ import 'package:movie_app/models/movie_model.dart';
 class ApiService {
   Dio dio = Dio();
 
-  Future<List<MovieModel>> getMovies({required String value}) async {
-    final String endpoint = "${value}api_key=${apikey}";
+  Future<List<MovieModel>> getMovies({required url}) async {
+    // final String endpoint = "${trending}api_key=${apikey}";
     try {
-      final apiresponse = await dio.get(endpoint);
+      final apiresponse = await dio.get(url);
       if (apiresponse.statusCode == 200) {
         Map data = apiresponse.data;
         List results = data["results"];
