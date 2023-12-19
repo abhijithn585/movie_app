@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/bottom_nav_bar.dart';
-import 'package:movie_app/views/homescreen.dart';
-import 'package:movie_app/views/movies_screen.dart';
-import 'package:movie_app/views/search_creen.dart';
-import 'package:movie_app/views/tv_shows.dart';
+import 'package:movie_app/views/pages/homescreen.dart';
+import 'package:movie_app/views/pages/movies_screen.dart';
+import 'package:movie_app/views/pages/search_creen.dart';
+import 'package:movie_app/views/pages/tv_shows.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -11,9 +11,9 @@ class BottomNavBar extends StatelessWidget {
 
   final List<Widget> _pages = [
     const Homescreen(),
-    const SearchScreen(),
+    SearchScreen(),
     const TvShowsScreen(),
-    const MovieScreen()
+    MovieScreen()
   ];
 
   @override

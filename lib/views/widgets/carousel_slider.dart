@@ -1,10 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
-import 'package:movie_app/controllers/home_provider.dart';
-import 'package:movie_app/models/movie_model.dart';
-import 'package:movie_app/views/details_page.dart';
-import 'package:provider/provider.dart';
+import 'package:movie_app/views/pages/details_page.dart';
 
 class MyCarouselSlider extends StatelessWidget {
   const MyCarouselSlider({super.key, required this.snapshot});
@@ -38,8 +35,10 @@ class MyCarouselSlider extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        DetailsPage(movies: snapshot.data[itemIndex])));
+                    builder: (context) => DetailsPage(
+                          movies: snapshot.data[itemIndex],
+                          id: snapshot.data[itemIndex].id,
+                        )));
               },
             ),
           );

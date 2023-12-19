@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/models/movie_model.dart';
-import 'package:movie_app/views/details_page.dart';
+import 'package:movie_app/views/pages/details_page.dart';
 
 class MovieList extends StatelessWidget {
   AsyncSnapshot snapshot;
@@ -26,8 +26,9 @@ class MovieList extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          DetailsPage(movies: snapshot.data[index])));
+                      builder: (context) => DetailsPage(
+                          id: snapshot.data[index].id,
+                          movies: snapshot.data[index])));
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
