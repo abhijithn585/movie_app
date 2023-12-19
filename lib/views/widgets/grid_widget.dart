@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/views/pages/details_page.dart';
+import 'package:movie_app/views/pages/tv_details.dart';
 
 class GridWidget extends StatelessWidget {
   GridWidget({super.key, required this.snapshot});
@@ -23,9 +24,16 @@ class GridWidget extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: GestureDetector(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TvDetailsPage(
+                                  tv: snapshot.data[index],
+                                  id: snapshot.data[index].id,
+                                )));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
                         child: Container(
                           width: 200,
                           color: Colors.amber,
@@ -34,9 +42,6 @@ class GridWidget extends StatelessWidget {
                               filterQuality: FilterQuality.high,
                               "${imagePath}${snapshot.data[index].poster_path}"),
                         ),
-                        // onTap: (){
-                        //   DetailsPage(movies: movieData,)
-                        // },
                       ),
                     ),
                   ),
@@ -49,3 +54,9 @@ class GridWidget extends StatelessWidget {
         });
   }
 }
+// onTap: () {
+//                           TvDetailsPage(
+//                             tv: snapshot.data[index],
+//                             id: snapshot.data[index].id,
+//                           );
+//                         },

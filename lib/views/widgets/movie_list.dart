@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
-import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/views/pages/details_page.dart';
 
 class MovieList extends StatelessWidget {
@@ -18,9 +17,8 @@ class MovieList extends StatelessWidget {
       child: ListView.builder(
           itemCount: snapshot.data.length,
           scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
-            MovieModel data = snapshot.data[index];
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
@@ -39,7 +37,7 @@ class MovieList extends StatelessWidget {
                       child: Image.network(
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.high,
-                          "${imagePath}${snapshot.data[index].poster_path}")),
+                          "$imagePath${snapshot.data[index].poster_path}")),
                 ),
               ),
             );

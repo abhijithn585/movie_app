@@ -4,13 +4,12 @@ import 'package:movie_app/models/cast_modal.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/service/apiservice.dart';
 
-class DetailsPage extends StatelessWidget {
-  MovieModel movies;
+class TvDetailsPage extends StatelessWidget {
+  MovieModel tv;
   int? id;
-  DetailsPage({super.key, required this.movies, this.id});
+  TvDetailsPage({super.key, required this.tv, this.id});
   @override
   Widget build(BuildContext context) {
-    ApiService service = ApiService();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -18,14 +17,14 @@ class DetailsPage extends StatelessWidget {
             leading: Container(
               height: 70,
               width: 70,
-              margin: const EdgeInsets.only(top: 16, left: 16),
+              margin: EdgeInsets.only(top: 16, left: 16),
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(10)),
               child: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(Icons.arrow_back_ios_rounded),
+                icon: Icon(Icons.arrow_back_ios_rounded),
                 color: Colors.white,
               ),
             ),
@@ -35,17 +34,17 @@ class DetailsPage extends StatelessWidget {
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                '${movies.original_title}',
-                style: const TextStyle(fontSize: 10),
+                '${tv.name}',
+                style: TextStyle(fontSize: 10),
               ),
               background: Stack(
                 fit: StackFit.expand,
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
-                    child: Image.network("${imagePath}${movies.poster_path}",
+                    child: Image.network("${imagePath}${tv.poster_path}",
                         fit: BoxFit.cover),
                   ),
                   Container(
@@ -66,24 +65,17 @@ class DetailsPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Over View",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                Text("${movies.overview}"),
-                const Text("Cast",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                Text("${tv.overview}"),
                 FutureBuilder(
-                  future: service.getcasts(
+                  future: ApiService().getcasts(
                     casturl:
-                        'https://api.themoviedb.org/3/movie/$id/credits?api_key=cf486b5d031ee63d98fe797f34892bee',
+                        'https://api.themoviedb.org/3/tv/${id}/credits?api_key=cf486b5d031ee63d98fe797f34892bee',
                   ),
                   builder: (context, snapshot) {
                     final data = snapshot.data;
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
+                      return CircularProgressIndicator();
                     } else if (snapshot.hasError) {
                       print(snapshot.error);
                       return Text(snapshot.error.toString());

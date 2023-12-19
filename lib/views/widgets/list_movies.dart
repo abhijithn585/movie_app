@@ -21,8 +21,9 @@ class ListItem extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              DetailsPage(movies: snapshot.data[index])));
+                          builder: (context) => DetailsPage(
+                              movies: snapshot.data[index],
+                              id: snapshot.data[index].id)));
                     },
                     child: Container(
                       height: 100,
@@ -44,7 +45,8 @@ class ListItem extends StatelessWidget {
                       "${snapshot.data[index].original_title}",
                       maxLines: 3,
                       overflow: TextOverflow.fade,
-                      style: TextStyle(color: Colors.amber),
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
@@ -54,14 +56,27 @@ class ListItem extends StatelessWidget {
                             itemCount: 5,
                             itemBuilder: (context, index) => Icon(
                                   Icons.star,
-                                  color: Colors.amber,
+                                  color: Colors.white,
                                 )),
                         Text(
                           "${(snapshot.data[index].vote_average / 2).toStringAsFixed(1)}",
-                          style: TextStyle(color: Colors.amber),
+                          style: TextStyle(color: Colors.white),
                         )
                       ],
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                          style: TextStyle(color: Colors.white),
+                          "Lang:${snapshot.data[index].original_language}"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        "Lang:${snapshot.data[index].release_date}",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               )

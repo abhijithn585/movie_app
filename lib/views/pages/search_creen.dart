@@ -13,14 +13,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  TextEditingController searchcontroller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final searchcontroller = Provider.of<SearchProvider>(context);
-
-    ApiService service = ApiService();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -41,7 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               SizedBox(
-                height: 400,
+                height: 900,
                 child: searchcontroller.searchResults.isEmpty
                     ? const Center(
                         child: Text('Search Anything'),
