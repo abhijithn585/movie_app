@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/controllers/search_provider.dart';
-import 'package:movie_app/service/apiservice.dart';
 import 'package:movie_app/views/pages/details_page.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({super.key});
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -29,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: searchcontroller.queryController,
                 decoration: InputDecoration(
                   hintText: 'Search Movies',
+                  hintStyle: const TextStyle(color: Colors.white),
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -39,7 +39,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 height: 900,
                 child: searchcontroller.searchResults.isEmpty
                     ? const Center(
-                        child: Text('Search Anything'),
+                        child: Text(
+                          'Search Anything',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       )
                     : GridView.builder(
                         itemCount: searchcontroller.searchResults.length,
@@ -55,16 +58,16 @@ class _SearchScreenState extends State<SearchScreen> {
 
                           return GestureDetector(
                             onTap: () {
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         DetailsPage(movies: movies)));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => DetailsPage(
+                                      movies: searchdata, id: searchdata.id)));
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.white),
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          "${imagePath}${searchdata.poster_path}"),
+                                          "$imagePath${searchdata.poster_path}"),
                                       fit: BoxFit.fill,
                                       filterQuality: FilterQuality.high),
                                   color: Colors.black.withOpacity(0.2),

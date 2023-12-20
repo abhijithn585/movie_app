@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/models/movie_model.dart';
-import 'package:movie_app/views/pages/details_page.dart';
 import 'package:movie_app/views/pages/tv_details.dart';
 
 class GridWidget extends StatelessWidget {
@@ -10,11 +9,11 @@ class GridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
           MovieModel movieData = snapshot.data[index];
           return GestureDetector(
@@ -47,7 +46,7 @@ class GridWidget extends StatelessWidget {
                   ),
                 ),
                 Text("${snapshot.data![index].name}",
-                    style: TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white)),
               ],
             ),
           );

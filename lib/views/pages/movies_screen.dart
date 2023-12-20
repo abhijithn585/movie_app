@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
+import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/service/apiservice.dart';
 import 'package:movie_app/views/widgets/card_heading.dart';
 import 'package:movie_app/views/widgets/list_movies.dart';
+import 'package:provider/provider.dart';
 
 class MovieScreen extends StatefulWidget {
   MovieScreen({super.key});
@@ -14,7 +16,7 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
-    ApiService service = ApiService();
+    final movieController = Provider.of<HomeProvider>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -23,7 +25,7 @@ class _MovieScreenState extends State<MovieScreen> {
           CardHeadings(heading: "Trending", left: 20, top: 20),
           Expanded(
             child: FutureBuilder(
-                future: service.getMovies(url: trending),
+                future: movieController.getMoviestoHome(url: trending),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Text("${snapshot.error.toString()}");

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
-import 'package:movie_app/service/apiservice.dart';
+import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/views/widgets/card_heading.dart';
 import 'package:movie_app/views/widgets/grid_widget.dart';
+import 'package:provider/provider.dart';
 
 class TvShowsScreen extends StatefulWidget {
   const TvShowsScreen({super.key});
@@ -12,10 +13,10 @@ class TvShowsScreen extends StatefulWidget {
 }
 
 class _TvShowsScreenState extends State<TvShowsScreen> {
-  ApiService service = ApiService();
-
   @override
   Widget build(BuildContext context) {
+    final movieController = Provider.of<HomeProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -29,7 +30,7 @@ class _TvShowsScreenState extends State<TvShowsScreen> {
           ),
           Expanded(
             child: FutureBuilder(
-                future: service.getMovies(url: topRatedTvShow),
+                future: movieController.getMoviestoHome(url: topRatedTvShow),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -52,7 +53,7 @@ class _TvShowsScreenState extends State<TvShowsScreen> {
           ),
           Expanded(
             child: FutureBuilder(
-                future: service.getMovies(url: popularTvShow),
+                future: movieController.getMoviestoHome(url: popularTvShow),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(

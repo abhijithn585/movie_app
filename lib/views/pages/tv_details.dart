@@ -65,8 +65,24 @@ class TvDetailsPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${tv.overview}"),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Over View",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("${tv.overview}"),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Cast",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ),
                 FutureBuilder(
                   future: ApiService().getcasts(
                     casturl:

@@ -45,7 +45,7 @@ class DetailsPage extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
-                    child: Image.network("${imagePath}${movies.poster_path}",
+                    child: Image.network("$imagePath${movies.poster_path}",
                         fit: BoxFit.cover),
                   ),
                   Container(
@@ -68,13 +68,22 @@ class DetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Over View",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                Text("${movies.overview}"),
-                const Text("Cast",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Over View",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("${movies.overview}"),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Cast",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ),
                 FutureBuilder(
                   future: service.getcasts(
                     casturl:
@@ -109,7 +118,7 @@ class DetailsPage extends StatelessWidget {
                                         child: CircleAvatar(
                                           radius: 45,
                                           foregroundImage: NetworkImage(
-                                              '${imagePath}${casts.profile_path!}'),
+                                              '$imagePath${casts.profile_path!}'),
                                         ),
                                       ),
                                     ),

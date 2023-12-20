@@ -9,7 +9,7 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
           return Row(
@@ -30,7 +30,7 @@ class ListItem extends StatelessWidget {
                       width: 100,
                       color: Colors.amber,
                       child: Image.network(
-                          "${imagePath}${snapshot.data[index].poster_path}",
+                          "$imagePath${snapshot.data[index].poster_path}",
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.high),
                     ),
@@ -45,7 +45,7 @@ class ListItem extends StatelessWidget {
                       "${snapshot.data[index].original_title}",
                       maxLines: 3,
                       overflow: TextOverflow.fade,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     Row(
@@ -54,27 +54,27 @@ class ListItem extends StatelessWidget {
                             itemSize: 20,
                             rating: snapshot.data[index].vote_average / 2,
                             itemCount: 5,
-                            itemBuilder: (context, index) => Icon(
+                            itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: Colors.white,
                                 )),
                         Text(
                           "${(snapshot.data[index].vote_average / 2).toStringAsFixed(1)}",
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         )
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                           "Lang:${snapshot.data[index].original_language}"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Lang:${snapshot.data[index].release_date}",
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   ],

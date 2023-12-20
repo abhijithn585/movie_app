@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
+import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/service/apiservice.dart';
 import 'package:movie_app/views/widgets/carousel_slider.dart';
 import 'package:movie_app/views/widgets/movie_list.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -14,12 +16,11 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
+    final moviecontroller = Provider.of<HomeProvider>(context, listen: true);
     ApiService service = ApiService();
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-      ),
+      appBar: AppBar(backgroundColor: Colors.black),
       body: SafeArea(
           child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

@@ -16,7 +16,7 @@ class MyCarouselSlider extends StatelessWidget {
           aspectRatio: 16 / 16,
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
           viewportFraction: 0.8,
         ),
         itemBuilder: (context, itemIndex, pageViewIndex) {
