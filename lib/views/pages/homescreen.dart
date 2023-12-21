@@ -16,8 +16,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    final moviecontroller = Provider.of<HomeProvider>(context, listen: true);
-    ApiService service = ApiService();
+    final moviecontroller = Provider.of<HomeProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(backgroundColor: Colors.black),
@@ -31,7 +30,7 @@ class _HomescreenState extends State<Homescreen> {
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             SizedBox(
               child: FutureBuilder(
-                  future: service.getMovies(url: trending),
+                  future: moviecontroller.getMoviestoHome(url: trending),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -40,6 +39,12 @@ class _HomescreenState extends State<Homescreen> {
                     } else if (snapshot.hasData) {
                       return MyCarouselSlider(
                         snapshot: snapshot,
+                      );
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.none) {
+                      return Center(
+                        child: Image.asset(
+                            'assets/cartoon-cloud-without-network-hint-baa876c7ada8297394d6e5ae875d9fc0.png'),
                       );
                     } else {
                       return const Center(child: CircularProgressIndicator());
@@ -52,7 +57,7 @@ class _HomescreenState extends State<Homescreen> {
             const Text("Popular Movies ",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             FutureBuilder(
-                future: service.getMovies(url: popular),
+                future: moviecontroller.getMoviestoHome(url: popular),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -69,7 +74,7 @@ class _HomescreenState extends State<Homescreen> {
             const Text("Up Coming Movie ",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             FutureBuilder(
-                future: service.getMovies(url: upcomingMovies),
+                future: moviecontroller.getMoviestoHome(url: upcomingMovies),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(

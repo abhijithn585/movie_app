@@ -6,12 +6,15 @@ import 'package:movie_app/service/apiservice.dart';
 class HomeProvider extends ChangeNotifier {
   final ApiService movieApiService = ApiService();
   List<MovieModel>? movies = [];
-  Future<void> getMoviestoHome({required url}) async {
+  Future getMoviestoHome({required url}) async {
     try {
       List<MovieModel> movieResults = await movieApiService.getMovies(url: url);
       movies = movieResults;
+      notifyListeners();
+      return movies;
     } catch (error) {
       print('Error fetching movies: $error');
+      notifyListeners();
     }
     notifyListeners();
   }

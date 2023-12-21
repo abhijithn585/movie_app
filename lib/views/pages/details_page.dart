@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/api_constants.dart';
+import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/models/cast_modal.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/service/apiservice.dart';
+import 'package:provider/provider.dart';
 
 class DetailsPage extends StatelessWidget {
   MovieModel movies;
@@ -10,6 +12,8 @@ class DetailsPage extends StatelessWidget {
   DetailsPage({super.key, required this.movies, this.id});
   @override
   Widget build(BuildContext context) {
+    final moviecontroller = Provider.of<HomeProvider>(context, listen: true);
+
     ApiService service = ApiService();
     return Scaffold(
       body: CustomScrollView(

@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:movie_app/models/cast_modal.dart';
 import 'package:movie_app/models/movie_model.dart';
 
 class ApiService {
   Dio dio = Dio();
+  List<dynamic> exception = [];
 
   Future<List<MovieModel>> getMovies({required url}) async {
     try {
@@ -15,7 +17,8 @@ class ApiService {
         final List results = data["results"];
         return results.map((movie) => MovieModel.fromJson(movie)).toList();
       } else {
-        throw Exception("status error:- ${apiresponse.statusCode}");
+        print("status error:- ${apiresponse.statusCode}");
+        return [];
       }
     } catch (a) {
       throw Exception("unable to fetch data:-${a}");
