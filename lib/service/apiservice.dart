@@ -21,7 +21,8 @@ class ApiService {
         return [];
       }
     } catch (a) {
-      throw Exception("unable to fetch data:-${a}");
+      print("unable to fetch data:-${a}");
+      return [];
     }
   }
 
@@ -39,7 +40,8 @@ class ApiService {
         return [];
       }
     } catch (e) {
-      throw Exception("unable to fetch data:-${e}");
+      print("unable to fetch data:-${e}");
+      return [];
     }
   }
 
