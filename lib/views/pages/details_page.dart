@@ -33,7 +33,7 @@ class DetailsPage extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black,
             expandedHeight: 500,
             pinned: true,
             floating: true,
@@ -69,75 +69,89 @@ class DetailsPage extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Over View",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("${movies.overview}"),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Cast",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                ),
-                FutureBuilder(
-                  future: service.getcasts(
-                    casturl:
-                        'https://api.themoviedb.org/3/movie/$id/credits?api_key=cf486b5d031ee63d98fe797f34892bee',
+            child: Container(
+              color: Colors.black,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Over View",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white)),
                   ),
-                  builder: (context, snapshot) {
-                    final data = snapshot.data;
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      print(snapshot.error);
-                      return Text(snapshot.error.toString());
-                    } else {
-                      return SizedBox(
-                        height: 130,
-                        width: double.infinity,
-                        child: ListView.builder(
-                          itemCount: data!.length,
-                          scrollDirection: Axis.horizontal,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            CastModel casts = data[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 12),
-                                    child: Container(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(2.0),
-                                        child: CircleAvatar(
-                                          radius: 45,
-                                          foregroundImage: NetworkImage(
-                                              '$imagePath${casts.profile_path!}'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "${movies.overview}",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Cast",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white)),
+                  ),
+                  FutureBuilder(
+                    future: service.getcasts(
+                      casturl:
+                          'https://api.themoviedb.org/3/movie/$id/credits?api_key=cf486b5d031ee63d98fe797f34892bee',
+                    ),
+                    builder: (context, snapshot) {
+                      final data = snapshot.data;
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        print(snapshot.error);
+                        return Text(snapshot.error.toString());
+                      } else {
+                        return SizedBox(
+                          height: 130,
+                          width: double.infinity,
+                          child: ListView.builder(
+                            itemCount: data!.length,
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              CastModel casts = data[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 12),
+                                      child: Container(
+                                        color: Colors.black,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2.0),
+                                          child: CircleAvatar(
+                                            radius: 45,
+                                            foregroundImage: NetworkImage(
+                                                '$imagePath${casts.profile_path!}'),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(casts.name!),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
+                                    Text(
+                                      casts.name!,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           )
         ],

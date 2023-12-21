@@ -1,3 +1,4 @@
+import 'package:bottom_bar/bottom_bar.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/bottom_nav_bar.dart';
@@ -24,25 +25,36 @@ class BottomNavBar extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(child: _pages[bottomProvider.selectedIndex]),
-        extendBody: true,
-        bottomNavigationBar: SizedBox(
-          height: 125,
-          child: DotNavigationBar(
-            // selectedIconTheme: const
-            // IconThemeData(color: Colors.black),
-            // unselectedIconTheme: const IconThemeData(color: Colors.grey),
-            currentIndex: bottomProvider.selectedIndex,
-            onTap: bottomProvider.navigateBottomBar,
-            enableFloatingNavBar: true,
-            items: [
-              DotNavigationBarItem(icon: Icon(Icons.home)),
-              DotNavigationBarItem(icon: Icon(Icons.search)),
-              DotNavigationBarItem(
+        bottomNavigationBar: BottomBar(
+          selectedIndex: bottomProvider.selectedIndex,
+          backgroundColor: Colors.black,
+          onTap: bottomProvider.navigateBottomBar,
+          items: const <BottomBarItem>[
+            BottomBarItem(
+                icon: Icon(Icons.home),
+                title: Text("Home"),
+                activeTitleColor: Colors.red,
+                activeColor: Colors.grey,
+                inactiveColor: Colors.grey),
+            BottomBarItem(
+                icon: Icon(Icons.search),
+                title: Text("Search"),
+                activeTitleColor: Colors.red,
+                activeColor: Colors.grey,
+                inactiveColor: Colors.grey),
+            BottomBarItem(
                 icon: Icon(Icons.live_tv),
-              ),
-              DotNavigationBarItem(icon: Icon(Icons.movie_filter_sharp)),
-            ],
-          ),
+                title: Text("Tv Show"),
+                activeColor: Colors.grey,
+                activeTitleColor: Colors.red,
+                inactiveColor: Colors.grey),
+            BottomBarItem(
+                icon: Icon(Icons.movie_filter_sharp),
+                title: Text("Movies"),
+                activeTitleColor: Colors.red,
+                activeColor: Colors.grey,
+                inactiveColor: Colors.grey),
+          ],
         ),
       ),
     );

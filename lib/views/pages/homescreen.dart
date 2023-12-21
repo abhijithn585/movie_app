@@ -29,7 +29,10 @@ class _HomescreenState extends State<Homescreen> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Trending",
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
             ),
             SizedBox(
               child: FutureBuilder(
@@ -60,7 +63,10 @@ class _HomescreenState extends State<Homescreen> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Popular Movies ",
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
             ),
             FutureBuilder(
                 future: moviecontroller.getMoviestoHome(url: popular),
@@ -80,7 +86,10 @@ class _HomescreenState extends State<Homescreen> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Up Coming Movie ",
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
             ),
             FutureBuilder(
                 future: moviecontroller.getMoviestoHome(url: upcomingMovies),

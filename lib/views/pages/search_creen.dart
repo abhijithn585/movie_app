@@ -28,7 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: searchcontroller.queryController,
                 decoration: InputDecoration(
                   hintText: 'Search Movies',
-                  hintStyle: const TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.red),
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -41,7 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ? const Center(
                         child: Text(
                           'Search Anything',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.red),
                         ),
                       )
                     : GridView.builder(

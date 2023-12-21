@@ -31,8 +31,7 @@ class _MovieScreenState extends State<MovieScreen> {
                     return Text("${snapshot.error.toString()}");
                   } else if (snapshot.hasData) {
                     return ListItem(snapshot: snapshot);
-                  } else if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
+                  } else if (snapshot.connectionState == ConnectionState.none) {
                     return Center(
                       child: Image.asset(
                           "assets/cartoon-cloud-without-network-hint-baa876c7ada8297394d6e5ae875d9fc0.png"),

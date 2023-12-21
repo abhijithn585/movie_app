@@ -23,7 +23,7 @@ class CardHeadings extends StatelessWidget {
       child: Text(
         heading,
         style: GoogleFonts.poppins(
-            color: textColor ?? Colors.white,
+            color: textColor ?? Colors.red,
             fontSize: fontsize ?? 18,
             fontWeight: FontWeight.bold),
       ),
