@@ -38,10 +38,14 @@ class _TvShowsScreenState extends State<TvShowsScreen> {
                     );
                   } else if (snapshot.hasData) {
                     return GridWidget(snapshot: snapshot);
-                  } else {
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: Image.asset(
+                          "assets/cartoon-cloud-without-network-hint-baa876c7ada8297394d6e5ae875d9fc0.png"),
                     );
+                  } else {
+                    return Center(child: Text(""));
                   }
                 }),
           ),
@@ -62,9 +66,7 @@ class _TvShowsScreenState extends State<TvShowsScreen> {
                   } else if (snapshot.hasData) {
                     return GridWidget(snapshot: snapshot);
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return Center(child: Text(""));
                   }
                 }),
           ),

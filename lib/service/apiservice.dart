@@ -35,7 +35,8 @@ class ApiService {
             .map((search) => MovieModel.fromJson(search))
             .toList();
       } else {
-        throw Exception('function error');
+        print('function error');
+        return [];
       }
     } catch (e) {
       throw Exception("unable to fetch data:-${e}");
@@ -51,10 +52,12 @@ class ApiService {
           final List<dynamic> results = data["cast"];
           return results.map((cast) => CastModel.fromJson(cast)).toList();
         } else {
-          throw Exception('No "cast" key in response');
+          print('No "cast" key in response');
+          return [];
         }
       } else {
-        throw Exception('Error function - Status Code: ${response.statusCode}');
+        print('Error function - Status Code: ${response.statusCode}');
+        return [];
       }
     } catch (e) {
       throw Exception(e);

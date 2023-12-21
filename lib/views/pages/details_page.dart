@@ -96,7 +96,7 @@ class DetailsPage extends StatelessWidget {
                   builder: (context, snapshot) {
                     final data = snapshot.data;
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
+                      return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       print(snapshot.error);
                       return Text(snapshot.error.toString());

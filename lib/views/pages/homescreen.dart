@@ -26,8 +26,11 @@ class _HomescreenState extends State<Homescreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Trending",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Trending",
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+            ),
             SizedBox(
               child: FutureBuilder(
                   future: moviecontroller.getMoviestoHome(url: trending),
@@ -41,7 +44,7 @@ class _HomescreenState extends State<Homescreen> {
                         snapshot: snapshot,
                       );
                     } else if (snapshot.connectionState ==
-                        ConnectionState.none) {
+                        ConnectionState.waiting) {
                       return Center(
                         child: Image.asset(
                             'assets/cartoon-cloud-without-network-hint-baa876c7ada8297394d6e5ae875d9fc0.png'),
@@ -54,8 +57,11 @@ class _HomescreenState extends State<Homescreen> {
             const SizedBox(
               height: 10,
             ),
-            const Text("Popular Movies ",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Popular Movies ",
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+            ),
             FutureBuilder(
                 future: moviecontroller.getMoviestoHome(url: popular),
                 builder: (context, snapshot) {
@@ -71,8 +77,11 @@ class _HomescreenState extends State<Homescreen> {
                     return const Center(child: CircularProgressIndicator());
                   }
                 }),
-            const Text("Up Coming Movie ",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Up Coming Movie ",
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+            ),
             FutureBuilder(
                 future: moviecontroller.getMoviestoHome(url: upcomingMovies),
                 builder: (context, snapshot) {
@@ -85,7 +94,7 @@ class _HomescreenState extends State<Homescreen> {
                       snapshot: snapshot,
                     );
                   } else {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: Text(''));
                   }
                 })
           ],

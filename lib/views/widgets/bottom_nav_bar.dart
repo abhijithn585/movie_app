@@ -1,3 +1,4 @@
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/bottom_nav_bar.dart';
 import 'package:movie_app/views/pages/homescreen.dart';
@@ -22,20 +23,26 @@ class BottomNavBar extends StatelessWidget {
         Provider.of<BottomNavBarProvider>(context, listen: true);
     return SafeArea(
       child: Scaffold(
-        body: _pages[bottomProvider.selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          selectedIconTheme: const IconThemeData(color: Colors.black),
-          unselectedIconTheme: const IconThemeData(color: Colors.grey),
-          currentIndex: bottomProvider.selectedIndex,
-          onTap: bottomProvider.navigateBottomBar,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.live_tv), label: "TV Shows"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.movie_filter_sharp), label: "Movies"),
-          ],
+        body: Center(child: _pages[bottomProvider.selectedIndex]),
+        extendBody: true,
+        bottomNavigationBar: SizedBox(
+          height: 125,
+          child: DotNavigationBar(
+            // selectedIconTheme: const
+            // IconThemeData(color: Colors.black),
+            // unselectedIconTheme: const IconThemeData(color: Colors.grey),
+            currentIndex: bottomProvider.selectedIndex,
+            onTap: bottomProvider.navigateBottomBar,
+            enableFloatingNavBar: true,
+            items: [
+              DotNavigationBarItem(icon: Icon(Icons.home)),
+              DotNavigationBarItem(icon: Icon(Icons.search)),
+              DotNavigationBarItem(
+                icon: Icon(Icons.live_tv),
+              ),
+              DotNavigationBarItem(icon: Icon(Icons.movie_filter_sharp)),
+            ],
+          ),
         ),
       ),
     );
