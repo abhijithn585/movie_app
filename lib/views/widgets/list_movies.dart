@@ -54,9 +54,10 @@ class ListItem extends StatelessWidget {
                             itemSize: 20,
                             rating: snapshot.data[index].vote_average / 2,
                             itemCount: 5,
+                            unratedColor: Colors.grey,
                             itemBuilder: (context, index) => const Icon(
                                   Icons.star,
-                                  color: Colors.white,
+                                  color: Colors.red,
                                 )),
                         Text(
                           "${(snapshot.data[index].vote_average / 2).toStringAsFixed(1)}",
@@ -73,7 +74,7 @@ class ListItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        "Lang:${snapshot.data[index].release_date}",
+                        "Relese:${snapshot.data[index].release_date}",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),

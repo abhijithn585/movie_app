@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/service/apiservice.dart';
 

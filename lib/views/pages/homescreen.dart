@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/constants/api_constants.dart';
 import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/service/apiservice.dart';
@@ -19,7 +20,16 @@ class _HomescreenState extends State<Homescreen> {
     final moviecontroller = Provider.of<HomeProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(backgroundColor: Colors.black),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Center(
+          child: Text(
+            "Movie Box",
+            style: GoogleFonts.aBeeZee(
+                color: Colors.red, fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+        ),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

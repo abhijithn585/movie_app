@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/constants/api_constants.dart';
-import 'package:movie_app/controllers/home_provider.dart';
 import 'package:movie_app/models/cast_modal.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/service/apiservice.dart';
-import 'package:provider/provider.dart';
 
 class DetailsPage extends StatelessWidget {
   MovieModel movies;
@@ -12,8 +11,6 @@ class DetailsPage extends StatelessWidget {
   DetailsPage({super.key, required this.movies, this.id});
   @override
   Widget build(BuildContext context) {
-    final moviecontroller = Provider.of<HomeProvider>(context, listen: true);
-
     ApiService service = ApiService();
     return Scaffold(
       body: CustomScrollView(
@@ -74,6 +71,42 @@ class DetailsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Rating",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Row(
+                      children: [
+                        RatingBarIndicator(
+                            itemSize: 20,
+                            rating: movies.vote_average! / 2,
+                            itemCount: 5,
+                            unratedColor: Colors.grey,
+                            itemBuilder: (context, index) => const Icon(
+                                  Icons.star,
+                                  color: Colors.red,
+                                )),
+                        Text(
+                          "${(movies.vote_average! / 2).toStringAsFixed(1)}",
+                          style: const TextStyle(color: Colors.red),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                      "Lang:${movies.original_language}",
+                    ),
+                  ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Over View",

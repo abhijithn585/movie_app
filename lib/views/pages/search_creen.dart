@@ -25,6 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 onChanged: (value) {
                   searchcontroller.searchMovies(value);
                 },
+                style: const TextStyle(color: Colors.white),
                 controller: searchcontroller.queryController,
                 decoration: InputDecoration(
                   hintText: 'Search Movies',

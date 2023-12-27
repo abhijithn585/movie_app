@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:movie_app/models/cast_modal.dart';
 import 'package:movie_app/models/movie_model.dart';
 
